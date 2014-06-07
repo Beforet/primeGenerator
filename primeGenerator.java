@@ -7,7 +7,7 @@ public class primeGenerator {
 	private ArrayList<Integer> primes;
 	public primeGenerator(){
 		primes = new ArrayList<Integer>();
-		primes.add(1);
+		//primes.add(1);
 		primes.add(2);
 	}
 	/**
@@ -15,24 +15,25 @@ public class primeGenerator {
 	returns true.
 	*/
 	private boolean isPrime(int testNo){
-		boolean prime = false;
-		if(testNo == 1 || testNo == 2){
-			prime = true;
+		boolean prime = true;
+		if(testNo == 1){
+			prime = false;
 			return prime;
 		}
 		for(Integer number : primes){
-			int n = number;
-			if(n > testNo)
+			if(number > testNo)
 				break;
-			if(testNo % n == 0){
-				if(testNo == n)
+			if(testNo % number == 0){
+				if(testNo == number)
 					prime = true;
-				else
+				else{
 					prime = false;
+					break;
+				}
 			}
 		}
 		if(prime == true){
-			if(primes.indexOf(testNo) < 0)
+			if(primes.indexOf(testNo) < 0 && testNo != 1)
 				primes.add(testNo);
 		}
 		return prime;
@@ -42,8 +43,8 @@ public class primeGenerator {
 	*/
 	public void generate(int target){
 		for(int i = 1; i <= target; i++){
-			if(isPrime(target))
-				System.out.println(target);
+			if(isPrime(i))
+				System.out.println(i);
 		}
 	}
 }
